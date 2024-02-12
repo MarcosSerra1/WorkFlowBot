@@ -2,12 +2,12 @@ import os
 import json
 
 
-def carregar_arquivo_json(caminho_relativo: str) -> dict:
+def carregar_arquivo_json() -> dict:
     '''
     Abre um arquivo JSON e carrega seu conteúdo em um dicionário Python.
 
     Parameters:
-    - caminho_relativo (str): O caminho relativo do arquivo JSON a ser aberto e carregado.
+    - None
 
     Returns:
     - dict: Um dicionário contendo os dados do arquivo JSON.
@@ -23,6 +23,8 @@ def carregar_arquivo_json(caminho_relativo: str) -> dict:
         # Obter o diretório atual do script
         diretorio_atual = os.path.dirname(os.path.abspath('.\\'))
         
+        # Caminho dados.json
+        caminho_relativo = 'WorkFlowBot/dados.json'
         # Construir o caminho absoluto para o arquivo JSON
         caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
 

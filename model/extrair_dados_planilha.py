@@ -1,13 +1,9 @@
 import pandas as pd
 import os 
 
-
-def extrair_dados_planilha(caminho_relativo : str) -> str:
+def extrair_dados_planilha() -> str:
     '''
     Extrai os dados relevantes de uma planilha Excel e os converte em formato JSON.
-
-    Parameters:
-    - caminho_relativo (str): O caminho do arquivo Excel a ser lido.
 
     Returns:
     - str: Uma string contendo os dados no formato JSON.
@@ -21,14 +17,20 @@ def extrair_dados_planilha(caminho_relativo : str) -> str:
         # Obter o diretório atual do script
         diretorio_atual = os.path.dirname(os.path.abspath('.\\'))
 
-        # Construir o caminho absoluto para o arquivo JSON
+        # Caminho para a planilha de contabilidade
+        caminho_relativo = 'WorkFlowBot/Contabilidade_Belem.xlsx'
+
+        # Construir o caminho absoluto para o arquivo Excel
         caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
 
+        # Verificar se o arquivo Excel existe
+        if not os.path.isfile(caminho_absoluto):
+            raise FileNotFoundError(f'O arquivo "{caminho_absoluto}" não foi encontrado.')
 
         # Ler o arquivo Excel
         planilha = pd.read_excel(caminho_absoluto)
 
-        # Seleciona as colunas desejadas
+        # Selecionar as colunas desejadas
         dados_selecionados = planilha[
             ['COLABORADOR', 'COMISSÕES', 'ADI', 'MATRÍCULA', 'EMPRESA']
         ]
@@ -38,7 +40,7 @@ def extrair_dados_planilha(caminho_relativo : str) -> str:
 
         return dados_json
 
-    except FileNotFoundError as e:
-        raise FileNotFoundError(f'O arquivo "{caminho_absoluto}" não foi encontrado.') from e
+    except FileNotFoundError as file_error:
+        raise FileNotFoundError(f'O arquivo "{caminho_absoluto}" não foi encontrado.') from file_error
     except Exception as e:
         raise Exception('Ocorreu um erro ao extrair os dados da planilha.') from e
