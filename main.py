@@ -5,6 +5,7 @@ from model.extrair_dados_planilha import extrair_dados_planilha
 from model.converter_para_json import converter_em_arquivo_json
 from model.carregar_arquivo_json import carregar_arquivo_json
 
+
 def extrair_dados() -> None:
     '''
     Extrai dados de uma planilha com base no número da empresa fornecido pelo usuário.
@@ -42,6 +43,8 @@ def extrair_dados() -> None:
     except Exception as e:
         messagebox.showerror("Erro", f"Ocorreu um erro: {str(e)}")
 
+
+
 # Configuração da janela principal
 janela = ctk.CTk()  # Criando a janela
 janela.title('WorkFlowBot')  # Titulo da janela
@@ -56,7 +59,7 @@ rotulo = ctk.CTkLabel(janela,
                       font=('Arial', 12))
 rotulo.grid(row=0, column=0, columnspan=2, pady=10)
 
-# Campo de entrada personalizado
+# # Campo de entrada personalizado
 entry = ctk.CTkEntry(janela, font=('Arial', 12))
 entry.grid(row=1, column=0, columnspan=2, padx=10)
 
@@ -64,14 +67,18 @@ entry.grid(row=1, column=0, columnspan=2, padx=10)
 botao_extrair = ctk.CTkButton(master=janela,
                               corner_radius=10,
                               text='Extrair Dados',
-                              command=extrair_dados)
+                              command=extrair_dados,
+                              fg_color='#109010',
+                              hover_color='#176917')
 botao_extrair.grid(row=2, column=0, padx=10, pady=10)
 
 # Botão para fechar o bot
 botao_fechar = ctk.CTkButton(master=janela,
                               corner_radius=10,
                               text='Fechar Bot',
-                              command=janela.destroy)
+                              command=janela.destroy,
+                              fg_color='#fc4b08',
+                              hover_color='#b94317')
 botao_fechar.grid(row=2, column=1, padx=10, pady=10)
 
 # Configurando o redimensionamento das colunas

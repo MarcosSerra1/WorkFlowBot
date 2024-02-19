@@ -21,10 +21,10 @@ def carregar_arquivo_json() -> dict:
 
     try:
         # Obter o diretório atual do script
-        diretorio_atual = os.path.dirname(os.path.abspath('.\\'))
+        diretorio_atual = os.getcwd() + os.sep
         
         # Caminho dados.json
-        caminho_relativo = 'WorkFlowBot/dados.json'
+        caminho_relativo = 'dados.json'
         # Construir o caminho absoluto para o arquivo JSON
         caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
 

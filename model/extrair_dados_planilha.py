@@ -15,10 +15,10 @@ def extrair_dados_planilha() -> str:
 
     try:
         # Obter o diretório atual do script
-        diretorio_atual = os.path.dirname(os.path.abspath('.\\'))
+        diretorio_atual = os.getcwd() + os.sep
 
         # Caminho para a planilha de contabilidade
-        caminho_relativo = 'WorkFlowBot/Contabilidade_Belem.xlsx'
+        caminho_relativo = 'Contabilidade_Belem.xlsx'
 
         # Construir o caminho absoluto para o arquivo Excel
         caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)

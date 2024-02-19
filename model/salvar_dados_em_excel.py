@@ -28,10 +28,10 @@ def salvar_dados_no_excel(dados_json: dict, numero_empresa_desejada: int) -> Non
                 dados_funcionarios.append(funcionario)
 
         # Obter o diretório atual do script
-        diretorio_atual = os.path.dirname(os.path.abspath('.\\'))
+        diretorio_atual = os.getcwd() + os.sep
 
         # Caminho para a planilha modelo
-        caminho_relativo = 'WorkFlowBot/doc/evento_simplificado.xlsx'
+        caminho_relativo = 'doc/evento_simplificado.xlsx'
         # Construir o caminho absoluto para o arquivo Excel
         caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
 
