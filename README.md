@@ -1,4 +1,7 @@
-# Documentação do Bot WorkFlowBot
+<h1 align="center"> Documentação do Bot WorkFlowBot </h1>
+<p align="center">
+   <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=RED&style=for-the-badge" #vitrinedev/>
+</p>
 
 ## Introdução
 
@@ -41,3 +44,7 @@ Para usar o bot WorkFlowBot, execute o arquivo `main.py` e siga as instruções 
 ## Considerações Finais
 
 O bot WorkFlowBot é uma ferramenta útil para automatizar o processo de extração e manipulação de dados de planilhas Excel. Ele oferece uma interface simples e intuitiva para os usuários interagirem com as funcionalidades fornecidas.
+
+# Autores
+
+| [<img src="https://avatars.githubusercontent.com/u/78652932?v=4" width=115><br><sub>Marcos Serra</sub>](https://github.com/marcosserra1)
