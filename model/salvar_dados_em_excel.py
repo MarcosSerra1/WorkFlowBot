@@ -19,72 +19,80 @@ def salvar_dados_no_excel(dados_json: dict, numero_empresa_desejada: int) -> Non
         # Lista para armazenar os dados dos funcionários da empresa
         dados_funcionarios = []
 
-        # Iterar sobre os dados e encontrar os funcionários da empresa desejada
-        for indice, empresa in dados_json['EMPRESA'].items():
-            if empresa == numero_empresa_desejada:
-                funcionario = {}
-                for chave, valor in dados_json.items():
-                    funcionario[chave] = valor[indice]
-                dados_funcionarios.append(funcionario)
+        resposta = any(empresa == numero_empresa_desejada for empresa in dados_json['EMPRESA'].items())
+        if resposta == True:
 
-        # Obter o diretório atual do script
-        diretorio_atual = os.getcwd() + os.sep
+            # Iterar sobre os dados e encontrar os funcionários da empresa desejada
+            for indice, empresa in dados_json['EMPRESA'].items():
+                if empresa == numero_empresa_desejada:
+                    funcionario = {}
+                    for chave, valor in dados_json.items():
+                        funcionario[chave] = valor[indice]
+                    dados_funcionarios.append(funcionario)
+        
 
-        # Caminho para a planilha modelo
-        caminho_relativo = 'doc/evento_simplificado.xlsx'
-        # Construir o caminho absoluto para o arquivo Excel
-        caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
+            # Obter o diretório atual do script
+            diretorio_atual = os.getcwd() + os.sep
 
-        # Verificar se o arquivo de modelo existe
-        if not os.path.isfile(caminho_absoluto):
-            raise FileNotFoundError(f'O arquivo "{caminho_absoluto}" não foi encontrado.')
+            # Caminho para a planilha modelo
+            caminho_relativo = 'doc/evento_simplificado.xlsx'
+            # Construir o caminho absoluto para o arquivo Excel
+            caminho_absoluto = os.path.join(diretorio_atual, caminho_relativo)
 
-        # Carregar o arquivo Excel de modelo
-        planilha = openpyxl.load_workbook(caminho_absoluto)
-        # Obtendo a planilha 'evento_simplificado.xls'
-        evento_simplificado_sheet = planilha.active
+            # Verificar se o arquivo de modelo existe
+            if not os.path.isfile(caminho_absoluto):
+                raise FileNotFoundError(f'O arquivo "{caminho_absoluto}" não foi encontrado.')
 
-        # Define a linha inicial onde os dados serão colados na planilha de destino
-        linha_destino = 2
+            # Carregar o arquivo Excel de modelo
+            planilha = openpyxl.load_workbook(caminho_absoluto)
+            # Obtendo a planilha 'evento_simplificado.xls'
+            evento_simplificado_sheet = planilha.active
 
-        # Iterar sobre os dados dos funcionários e copiar para a planilha de destino
-        for colaborador in dados_funcionarios:
-            if colaborador['ADI'] > 0:
-                # Colocando os dados na planilha para adiantamento
-                evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
-                evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
-                evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
-                evento_simplificado_sheet.cell(row=linha_destino, column=4, value='503')
-                evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Sim')
-                evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador['ADI'])
-                linha_destino += 1
+            # Define a linha inicial onde os dados serão colados na planilha de destino
+            linha_destino = 2
 
-            if colaborador['COMISSÕES'] > 0:
-                # Colocando os dados na planilha para comissões
-                evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
-                evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
-                evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
-                evento_simplificado_sheet.cell(row=linha_destino, column=4, value='31')
-                evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Sim')
-                evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador['COMISSÕES'])
-                linha_destino += 1
+            # Iterar sobre os dados dos funcionários e copiar para a planilha de destino
+            for colaborador in dados_funcionarios:
+                if colaborador['ADI'] > 0:
+                    # Colocando os dados na planilha para adiantamento
+                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value='503')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Sim')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador['ADI'])
+                    linha_destino += 1
 
-            if colaborador['COMISSÕES'] > 0:
-                # Colocando os dados na planilha para DSR
-                evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
-                evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
-                evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
-                evento_simplificado_sheet.cell(row=linha_destino, column=4, value='341')
-                evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Não')
-                evento_simplificado_sheet.cell(row=linha_destino, column=6, value='0.0')
-                linha_destino += 1
+                if colaborador['COMISSÕES'] > 0:
+                    # Colocando os dados na planilha para comissões
+                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value='31')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Sim')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador['COMISSÕES'])
+                    linha_destino += 1
 
-        # Salvar o arquivo Excel com um nome específico
-        nome_arquivo_excel = f'evento_simplificado_cmr_{numero_empresa_desejada}.xlsx'
-        planilha.save(nome_arquivo_excel)
+                if colaborador['COMISSÕES'] > 0:
+                    # Colocando os dados na planilha para DSR
+                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value='341')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Não')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value='0.0')
+                    linha_destino += 1
 
-        # Mensagem de sucesso
-        messagebox.showinfo('Concluido', f'Planilha salva como {nome_arquivo_excel}')
+            # Salvar o arquivo Excel com um nome específico
+            nome_arquivo_excel = f'evento_simplificado_cmr_{numero_empresa_desejada}.xlsx'
+            planilha.save(nome_arquivo_excel)
+
+            # Mensagem de sucesso
+            messagebox.showinfo('Concluido', f'Planilha salva como {nome_arquivo_excel}')
+
+        else:
+            messagebox.showerror('Empresa inválida!', 
+            f'Empresa {numero_empresa_desejada} não encontrada!')
 
     except FileNotFoundError as file_error:
         raise FileNotFoundError(f'O arquivo "{caminho_absoluto}" não foi encontrado.') from file_error
