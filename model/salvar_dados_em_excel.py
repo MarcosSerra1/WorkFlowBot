@@ -20,7 +20,7 @@ def salvar_dados_no_excel(dados_json: dict, numero_empresa_desejada: int) -> Non
         dados_funcionarios = []
 
         # Iterar sobre os dados e encontrar os funcionários da empresa desejada
-        for indice, empresa in dados_json["EMPRESA"].items():
+        for indice, empresa in dados_json['EMPRESA'].items():
             if empresa == numero_empresa_desejada:
                 funcionario = {}
                 for chave, valor in dados_json.items():

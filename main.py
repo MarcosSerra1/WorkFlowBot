@@ -32,7 +32,7 @@ def extrair_dados() -> None:
     try:
         empresa = entry.get()
         if not empresa.isdigit():
-            raise ValueError("Insira um número inteiro válido.")
+            raise ValueError('Insira um número inteiro válido.')
 
         empresa = int(empresa)
         extracao = extrair_dados_planilha()
@@ -41,7 +41,7 @@ def extrair_dados() -> None:
             dados_json=carregar_arquivo_json(),
             numero_empresa_desejada=empresa)
     except Exception as e:
-        messagebox.showerror("Erro", f"Ocorreu um erro: {str(e)}")
+        messagebox.showerror('Erro', f'Ocorreu um erro: {str(e)}')
 
 
 
@@ -55,7 +55,7 @@ janela.resizable(width=False, height=False)  # Bloqueando ajuste de tela
 
 # Rótulo para indicar ao usuário o que deve ser inserido
 rotulo = ctk.CTkLabel(janela,
-                      text="Insira o número da empresa:",
+                      text='Insira o número da empresa:',
                       font=('Arial', 12))
 rotulo.grid(row=0, column=0, columnspan=2, pady=10)
 
