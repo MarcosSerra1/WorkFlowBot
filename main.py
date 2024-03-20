@@ -44,7 +44,6 @@ def extrair_dados() -> None:
         messagebox.showerror('Erro', f'Ocorreu um erro: {str(e)}')
 
 
-
 # Configuração da janela principal
 janela = ctk.CTk()  # Criando a janela
 janela.title('WorkFlowBot')  # Titulo da janela
