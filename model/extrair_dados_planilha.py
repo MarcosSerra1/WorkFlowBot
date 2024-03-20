@@ -32,7 +32,7 @@ def extrair_dados_planilha() -> str:
 
         # Selecionar as colunas desejadas
         dados_selecionados = planilha[
-            ['COLABORADOR', 'COMISSÕES', 'ADI', 'MATRÍCULA', 'EMPRESA']
+            ["COLABORADOR", "COMISSÕES", "ADI", "MATRÍCULA", "EMPRESA"]
         ]
 
         # Converte os dados para JSON

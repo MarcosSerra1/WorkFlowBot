@@ -15,6 +15,7 @@ def converter_em_arquivo_json(dados_json: str) -> None:
         with open('dados.json', 'w', encoding='utf-8') as arquivo:
             # Escreve os dados JSON no arquivo
             arquivo.write(dados_json)
+
     except IOError as io_error:
         # Se houver um erro de E/S (Input/Output), lança a exceção IOError
         raise IOError('Erro de E/S ao salvar os dados no arquivo.') from io_error

@@ -38,7 +38,7 @@ def carregar_arquivo_json() -> dict:
         raise FileNotFoundError(f'O arquivo "{caminho_relativo}" não foi encontrado.') from e
     except json.JSONDecodeError as e:
         raise json.JSONDecodeError('Erro ao decodificar o conteúdo JSON.', caminho_absoluto, 1) from e
-    # except UnicodeDecodeError as e:
-    #     raise UnicodeDecodeError('Erro de decodificação de caracteres Unicode.') from e
+    except UnicodeDecodeError as e:
+        raise UnicodeDecodeError('Erro de decodificação de caracteres Unicode.') from e
     except Exception as e:
         raise Exception('Ocorreu um erro ao abrir e carregar o arquivo JSON.') from e

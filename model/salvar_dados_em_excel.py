@@ -19,11 +19,11 @@ def salvar_dados_no_excel(dados_json: dict, numero_empresa_desejada: int) -> Non
         # Lista para armazenar os dados dos funcionários da empresa
         dados_funcionarios = []
 
-        resposta = any(empresa == numero_empresa_desejada for empresa in dados_json['EMPRESA'].items())
+        resposta = any(empresa == numero_empresa_desejada for empresa in dados_json["EMPRESA"].items())
         if resposta == True:
 
             # Iterar sobre os dados e encontrar os funcionários da empresa desejada
-            for indice, empresa in dados_json['EMPRESA'].items():
+            for indice, empresa in dados_json["EMPRESA"].items():
                 if empresa == numero_empresa_desejada:
                     funcionario = {}
                     for chave, valor in dados_json.items():
@@ -53,34 +53,34 @@ def salvar_dados_no_excel(dados_json: dict, numero_empresa_desejada: int) -> Non
 
             # Iterar sobre os dados dos funcionários e copiar para a planilha de destino
             for colaborador in dados_funcionarios:
-                if colaborador['ADI'] > 0:
+                if colaborador["ADI"] > 0:
                     # Colocando os dados na planilha para adiantamento
-                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
-                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
-                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value='503')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Sim')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador['ADI'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador["MATRÍCULA"])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador["COLABORADOR"])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value="Folha")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value="503")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value="Sim")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador["ADI"])
                     linha_destino += 1
 
-                if colaborador['COMISSÕES'] > 0:
+                if colaborador["COMISSÕES"] > 0:
                     # Colocando os dados na planilha para comissões
-                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
-                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
-                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value='31')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Sim')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador['COMISSÕES'])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador["MATRÍCULA"])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador["COLABORADOR"])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value="Folha")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value="31")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value="Sim")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value=colaborador["COMISSÕES"])
                     linha_destino += 1
 
-                if colaborador['COMISSÕES'] > 0:
+                if colaborador["COMISSÕES"] > 0:
                     # Colocando os dados na planilha para DSR
-                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador['MATRÍCULA'])
-                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador['COLABORADOR'])
-                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value='Folha')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value='341')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value='Não')
-                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value='0.0')
+                    evento_simplificado_sheet.cell(row=linha_destino, column=1, value=colaborador["MATRÍCULA"])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=2, value=colaborador["COLABORADOR"])
+                    evento_simplificado_sheet.cell(row=linha_destino, column=3, value="Folha")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=4, value="341")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=5, value="Não")
+                    evento_simplificado_sheet.cell(row=linha_destino, column=6, value="0.0")
                     linha_destino += 1
 
             # Salvar o arquivo Excel com um nome específico
