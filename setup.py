@@ -17,9 +17,13 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(
-    name="WorkFlowBot",
+    name="bot.preços",
     version="1.0.0",
-    description="Extrator de Dados Excel",
+    description="Extrator de dados excel para bd",
     options={"build_exe": build_exe_options},
     executables=[Executable("main.py", base=base)]
 )
+
+
+# comando
+# python setup.py build

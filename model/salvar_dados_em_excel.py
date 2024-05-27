@@ -19,7 +19,7 @@ def salvar_dados_no_excel(dados_json: dict, numero_empresa_desejada: int) -> Non
         # Lista para armazenar os dados dos funcionários da empresa
         dados_funcionarios = []
 
-        resposta = any(empresa == numero_empresa_desejada for empresa in dados_json["EMPRESA"].items())
+        resposta = any(empresa == numero_empresa_desejada for empresa in dados_json["EMPRESA"].values())
         if resposta == True:
 
             # Iterar sobre os dados e encontrar os funcionários da empresa desejada
